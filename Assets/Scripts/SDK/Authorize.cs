@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using InstantGamesBridge;
-using InstantGamesBridge.Modules.Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using AndroidBridge;
 
 namespace SDK
 {
@@ -31,41 +30,41 @@ namespace SDK
 
         public void Authorization()
         {
-            if ((setAuthVK && Bridge.platform.id == "vk") || (setAuthYG && Bridge.platform.id == "yandex"))
-            {
-                if (!Bridge.player.isAuthorizationSupported)
-                {
-                    SetUIOnNotSupported();
-                    print("Authorization is not supported");
-                    return;
-                }
-                if (Bridge.player.isAuthorized)
-                {
-                    //Debug.LogWarning($"Player is authorized or authorization is not supported");
-                    SetUIOnAuthorized();
-                    print("Player is authorized");
-                    return;
-                }
-                
-                AuthorizeYandexOptions
-                    authorizeYandexOptions = new AuthorizeYandexOptions(yandexScopes); // Необязательно
-                Bridge.player.Authorize(
-                    success =>
-                    {
-                        if (success)
-                        {
-                            // Success
-                            Debug.LogAssertion($"Authorize success: {success}");
-                            SetUIOnAuthorized();
-                        }
-                        else
-                        {
-                            // Error
-                            Debug.LogError($"Authorize success: {success}");
-                        }
-                    },
-                    authorizeYandexOptions);
-            }
+            //if ((setAuthVK && Bridge.platform.id == "vk") || (setAuthYG && Bridge.platform.id == "yandex"))
+            //{
+            //    if (!Bridge.player.isAuthorizationSupported)
+            //    {
+            //        SetUIOnNotSupported();
+            //        print("Authorization is not supported");
+            //        return;
+            //    }
+            //    if (Bridge.player.isAuthorized)
+            //    {
+            //        //Debug.LogWarning($"Player is authorized or authorization is not supported");
+            //        SetUIOnAuthorized();
+            //        print("Player is authorized");
+            //        return;
+            //    }
+
+            //    AuthorizeYandexOptions
+            //        authorizeYandexOptions = new AuthorizeYandexOptions(yandexScopes); // Необязательно
+            //    Bridge.player.Authorize(
+            //        success =>
+            //        {
+            //            if (success)
+            //            {
+            //                // Success
+            //                Debug.LogAssertion($"Authorize success: {success}");
+            //                SetUIOnAuthorized();
+            //            }
+            //            else
+            //            {
+            //                // Error
+            //                Debug.LogError($"Authorize success: {success}");
+            //            }
+            //        },
+            //        authorizeYandexOptions);
+            //}
         }
 
         //my ui methods
@@ -91,15 +90,15 @@ namespace SDK
         /// <param name="playerImage">Фото, которое нужно заменить</param>
         public void SetFirstPlayerPhoto(Image playerImage)
         {
-            if (Bridge.player.photos.Count > 0)
-            {
-                string url = Bridge.player.photos[0];
-                StartCoroutine(LoadPhoto(url, playerImage));
-            }
-            else
-            {
-                Debug.LogWarning("The player has no photo");
-            }
+            //if (Bridge.player.photos.Count > 0)
+            //{
+            //    string url = Bridge.player.photos[0];
+            //    StartCoroutine(LoadPhoto(url, playerImage));
+            //}
+            //else
+            //{
+            //    Debug.LogWarning("The player has no photo");
+            //}
         }
 
         private IEnumerator LoadPhoto(string url, Image playerImage)
@@ -109,26 +108,26 @@ namespace SDK
 
             if (request.result == UnityWebRequest.Result.Success)
             {
-                var texture = ((DownloadHandlerTexture) request.downloadHandler).texture;
+                var texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
                 var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
                 playerImage.sprite = sprite;
             }
         }
-        
+
         /// <summary>
         /// Вставляет id игрока в текст
         /// </summary>
         /// <param name="text">Объект TextMeshProUGUI</param>
         public void SetPlayerId(TextMeshProUGUI tmp)
         {
-            string id = Bridge.player.id;
-            if (id == null)
-            {
-                Debug.LogWarning("Can't find id");
-                return;
-            }
-            
-            tmp.text = id;
+            //string id = Bridge.player.id;
+            //if (id == null)
+            //{
+            //    Debug.LogWarning("Can't find id");
+            //    return;
+            //}
+
+            //tmp.text = id;
         }
 
         /// <summary>
@@ -137,14 +136,14 @@ namespace SDK
         /// <param name="text">Объект TextMeshProUGUI</param>
         public void SetPlayerName(TextMeshProUGUI tmp)
         {
-            string playerName = Bridge.player.name;
-            if (playerName == null)
-            {
-                Debug.LogWarning("Can't find name");
-                return;
-            }
-            
-            tmp.text = playerName;
+            //string playerName = Bridge.player.name;
+            //if (playerName == null)
+            //{
+            //    Debug.LogWarning("Can't find name");
+            //    return;
+            //}
+
+            //tmp.text = playerName;
         }
     }
 }

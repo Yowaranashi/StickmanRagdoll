@@ -20,12 +20,12 @@ public class Finish : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.TryGetComponent(out Player player))
+        if (collision.TryGetComponent(out Player player))
         {
             _player = player;
             player.Finish();
             var lastLevel = _saveManager.LoadLevel();
-            if(lastLevel < SceneManager.GetActiveScene().buildIndex + 1)
+            if (lastLevel < SceneManager.GetActiveScene().buildIndex + 1)
             {
                 _saveManager.SaveLevel(SceneManager.GetActiveScene().buildIndex + 1);
             }

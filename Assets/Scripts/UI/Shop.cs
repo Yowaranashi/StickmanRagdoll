@@ -51,7 +51,7 @@ public class Shop : MonoBehaviour
     }
     public bool CanBuySkin(int cost)
     {
-        if(cost <= _database.Money)
+        if (cost <= _database.Money)
         {
             _database.Money -= cost;
             _moneyPanel.UpdateMoneyText();

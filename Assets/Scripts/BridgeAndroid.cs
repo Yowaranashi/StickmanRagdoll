@@ -1,8 +1,9 @@
 #if UNITY_ANDROID
 using UnityEngine;
 
-namespace InstantGamesBridge
+namespace AndroidBridge
 {
+    //Yfgbc
     public class Bridge : MonoBehaviour
     {
         // ¬с€ логика Singleton, если тебе нужна глобальна€ точка доступа:

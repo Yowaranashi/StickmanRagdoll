@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using InstantGamesBridge;
+using AndroidBridge;
 
 public class MoneyPanel : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class MoneyPanel : MonoBehaviour
     [SerializeField] private SaveManager _saveManager;
     private void Start()
     {
-        Time.timeScale= 1.0f;
+        Time.timeScale = 1.0f;
         _database.SetKeys();
         _saveManager.DataLoaded += UpdateMoneyText;
         _saveManager.SelectedSkinLoaded += _characterCustomization.ApplySkin;
