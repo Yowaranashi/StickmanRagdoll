@@ -15,16 +15,11 @@ This Unity project is licensed under the MIT License, read more about usability 
 Нужно посмотреть что там для RuStore
 
 Assets\Scripts\BridgeAndroid.cs
-{
-
- реализовать все необходимое для(за основу можно взять старую реализацую, но папки с изначальным кодом надо отдельно открывать Assets\InstantGamesBridge\...):
+Реализовать все необходимое для(за основу можно взять старую реализацую, но папки с изначальным кодом надо отдельно открывать Assets\InstantGamesBridge\...):
  - advertisement
  - storage
  - player
  - platform
-
-}
-
 образение к этой 4 были замечены в использовании другими модулями, если что-то нужно добавить, это надо добавить.
 
 SaveManager.cs - нужно раскомментить, когда реализуется Bridge, конечно если в итоге не придется переписывать логику.
