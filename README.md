@@ -10,10 +10,12 @@ This Unity project is licensed under the MIT License, read more about usability 
 # Что переделать
 Надо переписать следуйщие модули
 - все в папке *Assets\Scripts\Monetization*
-- все в папке *Assets\Scripts\SDK* 
+- все в папке *Assets\Scripts\SDK*
+
 Нужно посмотреть что там для RuStore
 
 Assets\Scripts\BridgeAndroid.cs
+
 {
  реализовать все необходимое для(за основу можно взять старую реализацую, но папки с изначальным кодом надо отдельно открывать Assets\InstantGamesBridge\...):
  - advertisement
