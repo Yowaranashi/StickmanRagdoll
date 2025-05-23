@@ -6,8 +6,8 @@ namespace AndroidBridge
     //Yfgbc
     public class Bridge : MonoBehaviour
     {
-        // Вся логика Singleton, если тебе нужна глобальная точка доступа:
-        static Bridge _instance;
+        // --- Singleton ---
+        private static Bridge _instance;
         public static Bridge instance
         {
             get
@@ -22,24 +22,46 @@ namespace AndroidBridge
             }
         }
 
-        // Определяем свойства-модули, возвращающие «пустышки»
-        public static AdvertisementModule advertisement => instance._advertisement;
-        public static StorageModule storage => instance._storage;
-        public static PlatformModule platform => instance._platform;
-        public static SocialModule social => instance._social;
-        public static PlayerModule player => instance._player;
-        // …и т.?д. для всех используемых модулей
+        // --- Статические ссылки на модули ---
+        public static AdvertisementModule Advertisement => instance._advertisement;
+        public static StorageModule Storage => instance._storage;
+        public static PlatformModule Platform => instance._platform;
+        public static SocialModule Social => instance._social;
+        public static PlayerModule Player => instance._player;
+        // (добавьте тут остальные, если нужны)
 
-        // Здесь – реальные классы «модули», которые ничего не делают
-        AdvertisementModule _advertisement = new AdvertisementModule();
-        StorageModule _storage = new StorageModule();
-        PlatformModule _platform = new PlatformModule();
-        SocialModule _social = new SocialModule();
-        PlayerModule _player = new PlayerModule();
-        // …
+        // --- Поля для модулей ---
+        private AdvertisementModule _advertisement;
+        private StorageModule _storage;
+        private PlatformModule _platform;
+        private SocialModule _social;
+        private PlayerModule _player;
 
-        // Пустые реализации
-        public class AdvertisementModule
+        private void Awake()
+        {
+            // Если кто-то уже создал Bridge — уничтожаем дубликат
+            if (_instance != null && _instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            // Инициализируем модули
+            _advertisement = new AdvertisementModule();
+            _storage = new StorageModule();
+            _platform = new PlatformModule();
+            _social = new SocialModule();
+            _player = new PlayerModule();
+
+            // Если какой-то модуль требует компонента:
+            // gameObject.AddComponent<LeaderboardModule>();
+        }
+    }
+
+    // Пустые реализации
+    public class AdvertisementModule
         {
             public void ShowInterstitial() { Debug.Log("Ads not supported on Android stub"); }
             public void ShowRewarded() { Debug.Log("Ads not supported on Android stub"); }
@@ -70,5 +92,4 @@ namespace AndroidBridge
         }
         // И т.?д. для всех модулей, упомянутых в ошибках.
     }
-}
 #endif
